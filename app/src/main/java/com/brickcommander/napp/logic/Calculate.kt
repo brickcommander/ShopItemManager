@@ -22,10 +22,13 @@ class Calculate() {
         return handler.getItemList()
     }
 
-    fun updateItem(newItem: Item, itemPosition: Int) {
+    fun updateItem(newItem: Item, itemPosition: Int): Boolean {
         Log.d(TAG, "updateItem: $newItem : $itemPosition")
-        if(newItem.getName().isEmpty()) return
+        if(newItem.getName().isEmpty()) return false
         if (itemPosition == -1) {
+            for (item in Data.itemList) {
+                if(item.getName().equals(newItem.getName(), ignoreCase = true)) return false
+            }
             Data.itemList.add(newItem)
         } else {
             Data.itemList[itemPosition] = newItem
@@ -36,6 +39,8 @@ class Calculate() {
             sortList(newList)
             handler.updateItemList(newList)
         }.start()
+
+        return true
     }
 
     fun deleteItem(itemPosition: Int) {

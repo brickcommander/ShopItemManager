@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.brickcommander.napp.logic.Calculate
 import com.brickcommander.napp.model.Item
@@ -74,7 +75,15 @@ class EditItemActivity : AppCompatActivity() {
             setRemainingCount(remainingEditText.text.toString().toIntOrNull() ?: 0)
         }
 
-        val calculate = Calculate()
-        calculate.updateItem(item!!, itemPosition)
+        if(item?.getName()?.isEmpty() == true) {
+            Toast.makeText(applicationContext, "Name cannot be empty", Toast.LENGTH_SHORT).show()
+        } else {
+            val calculate = Calculate()
+            if(calculate.updateItem(item!!, itemPosition)) {
+                Toast.makeText(applicationContext, "Saved", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(applicationContext, "Item Already Exists", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
