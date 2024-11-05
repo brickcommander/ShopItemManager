@@ -28,6 +28,7 @@ class ShowItemsActivity : AppCompatActivity() {
     private var items = mutableListOf<Item>()
     private val calculate: Calculate = Calculate()
     private val EDIT_ITEM_REQUEST_CODE: Int = 1
+    private var itemPosition: Int = -1
 
     companion object {
         const val TAG = "ShowItemsActivity"
@@ -85,19 +86,19 @@ class ShowItemsActivity : AppCompatActivity() {
             ): Boolean = false // Not used, as we only care about swipes
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
+                itemPosition = viewHolder.adapterPosition
                 when (direction) {
                     ItemTouchHelper.RIGHT -> {
                         // Swipe right to delete
-                        items.removeAt(position)
-                        calculate.deleteItem(position)
-                        adapter.notifyItemRemoved(position)
+                        items.removeAt(itemPosition)
+                        calculate.deleteItem(itemPosition)
+                        adapter.notifyItemRemoved(itemPosition)
                     }
                     ItemTouchHelper.LEFT -> {
                         // Swipe left to edit
                         val intent = Intent(this@ShowItemsActivity, EditItemActivity::class.java)
-                        intent.putExtra("work_item", position) // Pass the item to the edit activity
-                        adapter.notifyItemChanged(position) // Refresh item after swipe
+                        intent.putExtra("work_item", itemPosition) // Pass the item to the edit activity
+                        adapter.notifyItemChanged(itemPosition) // Refresh item after swipe
                         startActivityForResult(intent, EDIT_ITEM_REQUEST_CODE)
                     }
                 }
@@ -114,8 +115,10 @@ class ShowItemsActivity : AppCompatActivity() {
             if(items.size < Data.itemList.size) {
                 adapter.addItem(Data.itemList.last())
                 recyclerView.scrollToPosition(items.size-1)
+                itemPosition = items.size-1
+            } else {
+                adapter.notifyItemChanged(itemPosition)
             }
-            adapter.notifyDataSetChanged()
         }
     }
 
