@@ -66,6 +66,8 @@ class EditItemActivity : AppCompatActivity() {
                 sellEditText.setText(it.getSellingPrice().toString())
                 totalEditText.setText(it.getTotalCount().toString())
                 remainingEditText.setText(it.getRemainingCount().toString())
+                itemTotalSpinner.setSelection(it.getTotalQ())
+                itemRemSpinner.setSelection(it.getRemainingQ())
             }
         }
 

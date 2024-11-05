@@ -29,7 +29,7 @@
         <activity
             android:name=".ShowItemsActivity"
             android:exported="true"
-            android:label="Items" />
+            android:label="Shop Items" />
 
         <activity
             android:name=".EditItemActivity"
