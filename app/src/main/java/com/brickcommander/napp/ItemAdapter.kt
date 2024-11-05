@@ -34,8 +34,8 @@ class ItemAdapter(private val items: MutableList<Item>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         holder.name.text = capitalizeWords(item.getName())
-        holder.buyingPrice.text = item.getBuyingPrice().toString()
-        holder.sellingPrice.text = item.getSellingPrice().toString()
+        holder.buyingPrice.text = item.getBuyingPrice().toString() + " Rs"
+        holder.sellingPrice.text = item.getSellingPrice().toString() + " Rs"
         holder.totalCount.text = item.getTotalCount().toString() + " " + CONSTANTS.QUANTITY[item.getTotalQ()]
         holder.remainingCount.text = item.getRemainingCount().toString() + " " + CONSTANTS.QUANTITY[item.getRemainingQ()]
     }
