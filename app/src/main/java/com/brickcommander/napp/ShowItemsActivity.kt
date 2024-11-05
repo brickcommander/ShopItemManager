@@ -100,9 +100,16 @@ class ShowItemsActivity : AppCompatActivity() {
                 when (direction) {
                     ItemTouchHelper.RIGHT -> {
                         // Swipe right to delete
-                        items.removeAt(itemPosition)
-                        calculate.deleteItem(itemPosition)
-                        adapter.notifyItemRemoved(itemPosition)
+                        if(Utility.isInternetAvailable(this@ShowItemsActivity)) {
+                            val itemName = items[itemPosition].getName()
+                            items.removeAt(itemPosition)
+                            calculate.deleteItem(itemPosition)
+                            adapter.notifyItemRemoved(itemPosition)
+                            Toast.makeText(applicationContext, itemName + " Deleted", Toast.LENGTH_SHORT).show()
+                        } else {
+                            adapter.notifyItemChanged(itemPosition) // Refresh item after swipe
+                            Toast.makeText(applicationContext, "Please Connect to Internet", Toast.LENGTH_SHORT).show()
+                        }
                     }
                     ItemTouchHelper.LEFT -> {
                         // Swipe left to edit

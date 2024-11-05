@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textAllCaps="true"
         android:textStyle="bold"
         android:textSize="16sp" />
 
@@ -22,7 +21,6 @@
         android:stretchColumns="1" >  <!-- Stretch all columns evenly -->
 
         <TableRow>
-
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

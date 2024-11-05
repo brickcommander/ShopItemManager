@@ -38,6 +38,11 @@
                 android:layout_weight="1"
                 android:inputType="numberSigned"
                 android:gravity="center" />
+            <TextView
+                android:text="Rs."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" />
         </TableRow>
 
         <TableRow>
@@ -52,6 +57,11 @@
                 android:layout_weight="1"
                 android:inputType="numberSigned"
                 android:gravity="center" />
+            <TextView
+                android:text="Rs."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" />
         </TableRow>
 
         <TableRow>

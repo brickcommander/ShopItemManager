@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.brickcommander.napp.model.Item
+import java.util.Locale
 
 class ItemAdapter(private val items: MutableList<Item>) :
     RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
@@ -24,9 +25,14 @@ class ItemAdapter(private val items: MutableList<Item>) :
         return ViewHolder(view)
     }
 
+    fun capitalizeWords(text: String): String {
+        return text.split(" ").joinToString(" ") { it.replaceFirstChar { if (it.isLowerCase()) it.titlecase(
+            Locale.getDefault()) else it.toString() } }
+    }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
-        holder.name.text = item.getName()
+        holder.name.text = capitalizeWords(item.getName())
         holder.buyingPrice.text = item.getBuyingPrice().toString()
         holder.sellingPrice.text = item.getSellingPrice().toString()
         holder.totalCount.text = item.getTotalCount().toString()
