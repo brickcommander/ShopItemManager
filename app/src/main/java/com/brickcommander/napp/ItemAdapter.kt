@@ -26,7 +26,7 @@ class ItemAdapter(private val items: MutableList<Item>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
-        holder.name.text = "Created Date: " + item.getName()
+        holder.name.text = "Name: " + item.getName()
         holder.buyingPrice.text = "Buy: " + item.getBuyingPrice().toString()
         holder.sellingPrice.text = "Sell: " + item.getSellingPrice().toString()
         holder.totalCount.text = "Total: " + item.getTotalCount().toString()

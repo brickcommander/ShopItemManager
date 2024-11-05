@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Created Date"
         android:textSize="16sp" />
 
     <TextView
@@ -20,7 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Day"
         android:textSize="16sp" />
 
     <TextView
@@ -28,7 +26,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Eaters"
         android:textSize="16sp" />
 
     <TextView
@@ -36,7 +33,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Unable To Wash"
         android:textSize="16sp" />
 
     <TextView
@@ -44,7 +40,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Who Washed"
         android:textSize="16sp" />
 
 </LinearLayout>

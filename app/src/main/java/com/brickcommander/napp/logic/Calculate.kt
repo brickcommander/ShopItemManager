@@ -24,6 +24,7 @@ class Calculate() {
 
     fun updateItem(newItem: Item, itemPosition: Int) {
         Log.d(TAG, "updateItem: $newItem : $itemPosition")
+        if(newItem.getName().isEmpty()) return
         if (itemPosition == -1) {
             Data.itemList.add(newItem)
         } else {
