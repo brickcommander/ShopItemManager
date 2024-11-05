@@ -65,8 +65,19 @@ class EditItemActivity : AppCompatActivity() {
         }
     }
 
+    private fun revertChanges(oldItem: Item) {
+        item?.apply {
+            setName(oldItem.getName())
+            setBuyingPrice(oldItem.getBuyingPrice())
+            setSellingPrice(oldItem.getSellingPrice())
+            setTotalCount(oldItem.getTotalCount())
+            setRemainingCount(oldItem.getRemainingCount())
+        }
+    }
+
     private fun saveChanges() {
         // Update the workItem with new values
+        val oldItem: Item? = item?.copy()
         item?.apply {
             setName(nameEditText.text.toString())
             setBuyingPrice(buyEditText.text.toString().toIntOrNull() ?: 0)
@@ -77,10 +88,16 @@ class EditItemActivity : AppCompatActivity() {
 
         if(item?.getName()?.isEmpty() == true) {
             Toast.makeText(applicationContext, "Name cannot be empty", Toast.LENGTH_SHORT).show()
+            if (oldItem != null) {
+                revertChanges(oldItem)
+            }
         } else {
             val calculate = Calculate()
             if(calculate.updateItem(item!!, itemPosition)) {
                 Toast.makeText(applicationContext, "Saved", Toast.LENGTH_SHORT).show()
+                if (oldItem != null) {
+                    revertChanges(oldItem)
+                }
             } else {
                 Toast.makeText(applicationContext, "Item Already Exists", Toast.LENGTH_SHORT).show()
             }

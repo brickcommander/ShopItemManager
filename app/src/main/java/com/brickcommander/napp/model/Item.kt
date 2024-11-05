@@ -39,6 +39,16 @@ class Item() {
         remainingCount = value
     }
 
+    fun copy(): Item {
+        val newItem = Item()
+        newItem.name = name
+        newItem.buyingPrice = buyingPrice
+        newItem.sellingPrice = sellingPrice
+        newItem.totalCount = totalCount
+        newItem.remainingCount = remainingCount
+        return newItem
+    }
+
     override fun toString(): String {
         return "Item(id='$id', name='$name', buyingPrice=$buyingPrice, sellingPrice=$sellingPrice, totalCount=$totalCount, remainingCount=$remainingCount)"
     }
