@@ -14,7 +14,7 @@ class Calculate() {
     }
 
     private fun sortList(list: MutableList<Item>) {
-        list.sortByDescending { it.getId() }
+        list.sortBy { it.getName() }
     }
 
     fun getItemList(): MutableList<Item> {
@@ -31,9 +31,9 @@ class Calculate() {
         }
 
         Thread {
-            val newList = Data.itemList
+            val newList = Data.itemList.toMutableList()
             sortList(newList)
-            handler.updateItemList(Data.itemList)
+            handler.updateItemList(newList)
         }.start()
     }
 

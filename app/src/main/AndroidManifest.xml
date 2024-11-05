@@ -29,12 +29,12 @@
         <activity
             android:name=".ShowItemsActivity"
             android:exported="true"
-            android:label="Show Items" />
+            android:label="Items" />
 
         <activity
             android:name=".EditItemActivity"
             android:exported="true"
-            android:label="Show Items" />
+            android:label="Edit Item" />
     </application>
 
 </manifest>

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.brickcommander.napp.logic.Calculate
 import com.brickcommander.napp.model.Item
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -23,6 +24,7 @@ class ShowItemsActivity : AppCompatActivity() {
     private lateinit var adapter: ItemAdapter
     private lateinit var textView: TextView
     private lateinit var progressBar: ProgressBar
+    private lateinit var fab: FloatingActionButton
     private var items = mutableListOf<Item>()
     private val calculate: Calculate = Calculate()
     private val EDIT_ITEM_REQUEST_CODE: Int = 1
@@ -38,6 +40,7 @@ class ShowItemsActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         progressBar = findViewById(R.id.progressBar)
         textView = findViewById(R.id.textView4)
+        fab = findViewById(R.id.fab)
 
         adapter = ItemAdapter(items)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -64,6 +67,12 @@ class ShowItemsActivity : AppCompatActivity() {
                     textView.text = "No Items Available"
                 }
             }
+        }
+
+
+        fab.setOnClickListener {
+            val intent = Intent(this@ShowItemsActivity, EditItemActivity::class.java)
+            startActivityForResult(intent, EDIT_ITEM_REQUEST_CODE)
         }
     }
 
@@ -101,6 +110,11 @@ class ShowItemsActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == EDIT_ITEM_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            Log.d(TAG, "onActivityResult : ${items.size} : ${Data.itemList.size} : ${Data.itemList.last()}")
+            if(items.size < Data.itemList.size) {
+                adapter.addItem(Data.itemList.last())
+                recyclerView.scrollToPosition(items.size-1)
+            }
             adapter.notifyDataSetChanged()
         }
     }
