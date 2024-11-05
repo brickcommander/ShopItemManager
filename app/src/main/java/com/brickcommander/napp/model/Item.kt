@@ -10,6 +10,8 @@ class Item() {
     private var sellingPrice: Int = 0
     private var totalCount: Int = 0
     private var remainingCount: Int = 0
+    private var totalQ: Int = 0
+    private var remainingQ: Int = 0
     private val createdDate: LocalDate = LocalDate.now()
 
     fun getId(): String = id
@@ -39,6 +41,16 @@ class Item() {
         remainingCount = value
     }
 
+    fun getRemainingQ(): Int = remainingQ
+    fun setRemainingQ(value: Int) {
+        remainingQ = value
+    }
+
+    fun getTotalQ(): Int = totalQ
+    fun setTotalQ(value: Int) {
+        totalQ = value
+    }
+
     fun copy(): Item {
         val newItem = Item()
         newItem.name = name
@@ -46,10 +58,12 @@ class Item() {
         newItem.sellingPrice = sellingPrice
         newItem.totalCount = totalCount
         newItem.remainingCount = remainingCount
+        newItem.totalQ = totalQ
+        newItem.remainingQ = remainingQ
         return newItem
     }
 
     override fun toString(): String {
-        return "Item(id='$id', name='$name', buyingPrice=$buyingPrice, sellingPrice=$sellingPrice, totalCount=$totalCount, remainingCount=$remainingCount)"
+        return "Item(id='$id', name='$name', buyingPrice=$buyingPrice, sellingPrice=$sellingPrice, totalCount=$totalCount, remainingCount=$remainingCount), totalQ=$totalQ, remainingQ=$remainingQ"
     }
 }

@@ -6,8 +6,13 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.brickcommander.napp.data.CONSTANTS
 import com.brickcommander.napp.data.Data
 import com.brickcommander.napp.logic.Calculate
 import com.brickcommander.napp.model.Item
@@ -20,6 +25,8 @@ class EditItemActivity : AppCompatActivity() {
     private lateinit var totalEditText: EditText
     private lateinit var remainingEditText: EditText
     private lateinit var saveButton: Button
+    private lateinit var itemTotalSpinner: Spinner
+    private lateinit var itemRemSpinner: Spinner
     private var item: Item? = null
     private var itemPosition: Int = -1
 
@@ -35,6 +42,13 @@ class EditItemActivity : AppCompatActivity() {
         totalEditText = findViewById(R.id.totalEditText)
         remainingEditText = findViewById(R.id.remainingEditText)
         saveButton = findViewById(R.id.saveButton)
+        itemTotalSpinner = findViewById(R.id.itemTotalSpinner)
+        itemRemSpinner = findViewById(R.id.itemRemSpinner)
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, CONSTANTS.QUANTITY.toTypedArray())
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        itemTotalSpinner.adapter = adapter
+        itemRemSpinner.adapter = adapter
 
         // Retrieve the work item from the intent
         itemPosition = intent.getIntExtra("work_item", -1)
@@ -52,6 +66,33 @@ class EditItemActivity : AppCompatActivity() {
                 sellEditText.setText(it.getSellingPrice().toString())
                 totalEditText.setText(it.getTotalCount().toString())
                 remainingEditText.setText(it.getRemainingCount().toString())
+            }
+        }
+
+
+        itemTotalSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                // Handle item selection here
+                val selectedItem = parent.getItemAtPosition(position).toString()
+                Log.d("EditItemActivity", "itemTotalSpinner Selected item: $selectedItem")
+                item?.setTotalQ(position)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                Log.d("EditItemActivity", "itemTotalSpinner None Selected")
+            }
+        }
+
+        itemRemSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                // Handle item selection here
+                val selectedItem = parent.getItemAtPosition(position).toString()
+                Log.d("EditItemActivity", "itemRemSpinner Selected item: $selectedItem")
+                item?.setRemainingQ(position)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                Log.d("EditItemActivity", "itemRemSpinner None Selected")
             }
         }
 
@@ -76,6 +117,8 @@ class EditItemActivity : AppCompatActivity() {
             setSellingPrice(oldItem.getSellingPrice())
             setTotalCount(oldItem.getTotalCount())
             setRemainingCount(oldItem.getRemainingCount())
+            setTotalQ(oldItem.getTotalQ())
+            setRemainingQ(oldItem.getRemainingQ())
         }
     }
 

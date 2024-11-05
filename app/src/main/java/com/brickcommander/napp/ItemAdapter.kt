@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.brickcommander.napp.data.CONSTANTS
 import com.brickcommander.napp.model.Item
 import java.util.Locale
 
@@ -35,8 +36,8 @@ class ItemAdapter(private val items: MutableList<Item>) :
         holder.name.text = capitalizeWords(item.getName())
         holder.buyingPrice.text = item.getBuyingPrice().toString()
         holder.sellingPrice.text = item.getSellingPrice().toString()
-        holder.totalCount.text = item.getTotalCount().toString()
-        holder.remainingCount.text = item.getRemainingCount().toString()
+        holder.totalCount.text = item.getTotalCount().toString() + " " + CONSTANTS.QUANTITY[item.getTotalQ()]
+        holder.remainingCount.text = item.getRemainingCount().toString() + " " + CONSTANTS.QUANTITY[item.getRemainingQ()]
     }
 
     override fun getItemCount(): Int {

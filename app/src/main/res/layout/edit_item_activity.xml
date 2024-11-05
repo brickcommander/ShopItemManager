@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stretchColumns="1"
-        android:padding="18dp">
+        android:padding="10dp">
 
         <TableRow>
             <TextView
@@ -66,7 +66,7 @@
 
         <TableRow>
             <TextView
-                android:text="Total Count"
+                android:text="Total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <EditText
@@ -76,14 +76,19 @@
                 android:layout_weight="1"
                 android:inputType="numberSigned"
                 android:gravity="center" />
+            <Spinner
+                android:id="@+id/itemTotalSpinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
         </TableRow>
 
         <TableRow>
             <TextView
-                android:text="Remaining Count"
+                android:text="Remaining"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp" />
+                android:layout_marginRight="12dp" />
             <EditText
                 android:id="@+id/remainingEditText"
                 android:layout_width="0dp"
@@ -91,6 +96,11 @@
                 android:layout_weight="1"
                 android:inputType="numberSigned"
                 android:gravity="center" />
+            <Spinner
+                android:id="@+id/itemRemSpinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
         </TableRow>
 
     </TableLayout>
