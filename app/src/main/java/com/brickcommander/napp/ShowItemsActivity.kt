@@ -6,14 +6,17 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.brickcommander.napp.data.Data
 import com.brickcommander.napp.logic.Calculate
 import com.brickcommander.napp.model.Item
+import com.brickcommander.napp.utils.Utility
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -50,30 +53,37 @@ class ShowItemsActivity : AppCompatActivity() {
         // Set up swipe functionality
         setupSwipeActions()
 
-        lifecycleScope.launch(Dispatchers.IO) { // Use coroutines for background work
-            progressBar.isVisible = true // Update UI on main thread
-            Data.itemList = calculate.getItemList()
-            Log.i(TAG, "itemList=${Data.itemList}")
+        if(Utility.isInternetAvailable(this)) {
+            lifecycleScope.launch(Dispatchers.IO) { // Use coroutines for background work
+                progressBar.isVisible = true // Update UI on main thread
+                Data.itemList = calculate.getItemList()
+                Log.i(TAG, "itemList=${Data.itemList}")
 
-            withContext(Dispatchers.Main) { // Switch to main thread for UI updates
-                progressBar.isVisible = false
+                withContext(Dispatchers.Main) { // Switch to main thread for UI updates
+                    progressBar.isVisible = false
 
-                if(Data.itemList.isNotEmpty()) {
-                    Data.itemList.forEach { item ->
-                        adapter.addItem(item)
-                        recyclerView.scrollToPosition(items.size - 1)
+                    if(Data.itemList.isNotEmpty()) {
+                        Data.itemList.forEach { item ->
+                            adapter.addItem(item)
+                            recyclerView.scrollToPosition(items.size - 1)
+                        }
+                    } else {
+                        textView.isVisible = true
+                        textView.text = "No Items Available"
                     }
-                } else {
-                    textView.isVisible = true
-                    textView.text = "No Items Available"
                 }
             }
+        } else {
+            Toast.makeText(applicationContext, "Please Connect to Internet", Toast.LENGTH_SHORT).show()
         }
 
-
         fab.setOnClickListener {
-            val intent = Intent(this@ShowItemsActivity, EditItemActivity::class.java)
-            startActivityForResult(intent, EDIT_ITEM_REQUEST_CODE)
+            if(Utility.isInternetAvailable(this)) {
+                val intent = Intent(this@ShowItemsActivity, EditItemActivity::class.java)
+                startActivityForResult(intent, EDIT_ITEM_REQUEST_CODE)
+            } else {
+                Toast.makeText(applicationContext, "Please Connect to Internet", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

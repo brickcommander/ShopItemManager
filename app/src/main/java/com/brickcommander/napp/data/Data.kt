@@ -1,4 +1,4 @@
-package com.brickcommander.napp
+package com.brickcommander.napp.data
 
 import com.brickcommander.napp.model.Item
 

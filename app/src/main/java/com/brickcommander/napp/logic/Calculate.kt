@@ -2,7 +2,7 @@ package com.brickcommander.napp.logic
 
 import com.brickcommander.napp.db.GitHubJsonHandler
 import android.util.Log
-import com.brickcommander.napp.Data
+import com.brickcommander.napp.data.Data
 import com.brickcommander.napp.model.Item
 
 class Calculate() {

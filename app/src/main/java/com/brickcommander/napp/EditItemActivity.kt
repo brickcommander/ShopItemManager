@@ -1,6 +1,5 @@
 package com.brickcommander.napp
 
-
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -9,8 +8,10 @@ import android.widget.EditText
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.brickcommander.napp.data.Data
 import com.brickcommander.napp.logic.Calculate
 import com.brickcommander.napp.model.Item
+import com.brickcommander.napp.utils.Utility
 
 class EditItemActivity : AppCompatActivity() {
     private lateinit var nameEditText: EditText
@@ -37,31 +38,34 @@ class EditItemActivity : AppCompatActivity() {
 
         // Retrieve the work item from the intent
         itemPosition = intent.getIntExtra("work_item", -1)
-        Log.d("EditItemActivity", "itemPosition: $itemPosition")
         if(itemPosition == -1) {
             item = Item()
         } else if(itemPosition >= Data.itemList.size) {
-            Log.d("EditItemActivity", "Invalid item position: $itemPosition")
             finish()
         } else {
             item = Data.itemList[itemPosition]
+
+            // Populate the fields with existing data
+            item?.let {
+                nameEditText.setText(it.getName())
+                buyEditText.setText(it.getBuyingPrice().toString())
+                sellEditText.setText(it.getSellingPrice().toString())
+                totalEditText.setText(it.getTotalCount().toString())
+                remainingEditText.setText(it.getRemainingCount().toString())
+            }
         }
 
-        // Populate the fields with existing data
-        item?.let {
-            nameEditText.setText(it.getName())
-            buyEditText.setText(it.getBuyingPrice().toString())
-            sellEditText.setText(it.getSellingPrice().toString())
-            totalEditText.setText(it.getTotalCount().toString())
-            remainingEditText.setText(it.getRemainingCount().toString())
-        }
 
         // Save the changes when the button is clicked
         saveButton.setOnClickListener {
-            saveChanges()
-            val resultIntent = Intent()
-            setResult(Activity.RESULT_OK, resultIntent)
-            finish() // Close the activity after saving
+            if(Utility.isInternetAvailable(this)) {
+                saveChanges()
+                val resultIntent = Intent()
+                setResult(Activity.RESULT_OK, resultIntent)
+                finish() // Close the activity after saving
+            } else {
+                Toast.makeText(applicationContext, "Please Connect to Internet", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
