@@ -95,11 +95,11 @@ class EditItemActivity : AppCompatActivity() {
             val calculate = Calculate()
             if(calculate.updateItem(item!!, itemPosition)) {
                 Toast.makeText(applicationContext, "Saved", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(applicationContext, "Item Already Exists", Toast.LENGTH_SHORT).show()
                 if (oldItem != null) {
                     revertChanges(oldItem)
                 }
-            } else {
-                Toast.makeText(applicationContext, "Item Already Exists", Toast.LENGTH_SHORT).show()
             }
         }
     }
