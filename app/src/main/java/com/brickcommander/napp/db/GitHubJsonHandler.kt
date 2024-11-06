@@ -14,14 +14,36 @@ import com.google.gson.reflect.TypeToken
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.time.LocalDateTime
+import java.util.concurrent.TimeUnit
 
 class GitHubJsonHandler() {
+
+    init {
+        Cache.initialize()
+    }
+
     private val githubToken = BuildConfig.GITHUB_TOKEN
     private val repoOwner = BuildConfig.REPO_OWNER
     private val repoName = BuildConfig.REPO_NAME
     private val fileItemListPath = BuildConfig.FILE_ITEMLIST_PATH
 
-    private val client = OkHttpClient()
+    private val client = OkHttpClient.Builder()
+        .cache(Cache.cache)
+        .addInterceptor { chain ->
+            val request = chain.request()
+            val response = chain.proceed(request)
+
+            // Define caching policies based on response headers
+            val cacheControl = CacheControl.Builder()
+                .maxAge(60*24*2, TimeUnit.MINUTES) // Cache for 30 minutes
+                .build()
+
+            response.newBuilder()
+                .header("Cache-Control", cacheControl.toString())
+                .build()
+        }
+        .build()
+
     private val gson = GsonBuilder()
         .registerTypeAdapter(LocalDate::class.java, LocalDateSerializer())
         .registerTypeAdapter(LocalDate::class.java, LocalDateDeserializer())
@@ -155,6 +177,7 @@ class GitHubJsonHandler() {
         try {
             Log.i(TAG, "updateItemList : itemList=$itemList")
             val updatedJson = gson.toJson(itemList)
+            Cache.cache.evictAll() // Invalidate the cache
             return updateJsonOnGitHub(updatedJson, fileItemListPath, "Update ItemList : ${LocalDateTime.now()}")
         } catch (e: Exception) {
             Log.i(TAG, "Exception Occured : updateItemList : ${e.message}")
