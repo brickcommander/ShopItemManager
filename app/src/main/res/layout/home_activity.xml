@@ -10,8 +10,9 @@
         android:layout_height="0dp"
         android:layout_above="@id/bottom_bar"
         android:layout_alignParentTop="true"
-        android:divider="@android:color/darker_gray"
-        android:dividerHeight="1dp" />
+        android:layout_margin="7dp"
+        android:divider="#303031"
+        android:dividerHeight="6dp" />
 
     <!-- Bottom Bar -->
     <LinearLayout

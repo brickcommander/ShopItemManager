@@ -4,11 +4,13 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
+import com.brickcommander.napp.model.Item
 
 class MainActivity : AppCompatActivity() {
+    private var items = mutableListOf<Item>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_activity)
@@ -18,14 +20,14 @@ class MainActivity : AppCompatActivity() {
             title = "Shop Manager" // Set custom title
         }
 
-        // Create a list of demo items
-        val demoItems = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
-
         // Get the ListView
         val listView: ListView = findViewById(R.id.list_of_items)
 
-        // Create an ArrayAdapter to bind the demo items to the ListView
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, demoItems)
+        items.add(Item())
+        items.add(Item())
+        items.add(Item())
+
+        val adapter = ListItemAdapter(this, items.toList())
 
         // Set the adapter to the ListView
         listView.adapter = adapter
