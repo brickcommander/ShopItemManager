@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.ListView
 import android.widget.Toast
+import com.brickcommander.napp.model.Enums
 import com.brickcommander.napp.model.Item
 
 class MainActivity : AppCompatActivity() {
@@ -20,10 +21,12 @@ class MainActivity : AppCompatActivity() {
             title = "Shop Manager" // Set custom title
         }
 
+        val fragment = ListFragment.newInstance(Enums.ITEMS)
+
         // Check if the fragment is already added (useful for configuration changes)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, ListFragment())
+                .replace(R.id.fragment_container, fragment)
                 .commit()
         }
 
