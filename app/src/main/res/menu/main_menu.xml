@@ -1,5 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
         android:id="@+id/action_add"
         android:title="Add"
@@ -11,4 +12,25 @@
         android:title="Sort By"
         android:icon="@drawable/baseline_sort_24"
         app:showAsAction="ifRoom" />
+
+    <!-- Third item with a submenu -->
+    <item
+        android:id="@+id/action_more_options"
+        android:title="More"
+        android:icon="@drawable/baseline_more_vert_24"
+        app:showAsAction="always">
+
+        <!-- Submenu items -->
+        <menu>
+            <item
+                android:id="@+id/actionAddItem"
+                android:title="Add Item" />
+            <item
+                android:id="@+id/actionAddCustomer"
+                android:title="Add Customer" />
+            <item
+                android:id="@+id/actionProfile"
+                android:title="Add Profile" />
+        </menu>
+    </item>
 </menu>

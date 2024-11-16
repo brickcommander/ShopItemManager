@@ -1,0 +1,16 @@
+<!-- res/layout/fragment_list.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- ListView to display items -->
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_margin="7dp"
+        android:divider="#303031"
+        android:dividerHeight="6dp"
+        android:layout_height="match_parent" />
+</LinearLayout>

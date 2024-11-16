@@ -1,5 +1,6 @@
 package com.brickcommander.napp
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import com.brickcommander.napp.model.Item
 import java.util.Locale
 
 class ListItemAdapter(
-    private val context: MainActivity,
+    private val context: Context,
     private val items: List<Item>
 ) : ArrayAdapter<Item>(context, R.layout.item_layout, items) {
 

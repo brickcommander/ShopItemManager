@@ -20,17 +20,13 @@ class MainActivity : AppCompatActivity() {
             title = "Shop Manager" // Set custom title
         }
 
-        // Get the ListView
-        val listView: ListView = findViewById(R.id.list_of_items)
+        // Check if the fragment is already added (useful for configuration changes)
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, ListFragment())
+                .commit()
+        }
 
-        items.add(Item())
-        items.add(Item())
-        items.add(Item())
-
-        val adapter = ListItemAdapter(this, items.toList())
-
-        // Set the adapter to the ListView
-        listView.adapter = adapter
     }
 
     // Inflate custom menu in ActionBar
