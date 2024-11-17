@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.brickcommander.napp.activity.edit.EditItemActivity
 import com.brickcommander.napp.data.Data
 import com.brickcommander.napp.logic.Calculate
 import com.brickcommander.napp.model.Item

@@ -32,7 +32,7 @@
             android:label="Shop Items" />
 
         <activity
-            android:name=".EditItemActivity"
+            android:name=".activity.edit.EditItemActivity"
             android:exported="false"
             android:label="Edit Item" />
     </application>

@@ -1,4 +1,4 @@
-package com.brickcommander.napp
+package com.brickcommander.napp.activity.list
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import com.brickcommander.napp.R
 import com.brickcommander.napp.data.CONSTANTS
 import com.brickcommander.napp.model.Item
 import java.util.Locale
@@ -14,6 +15,10 @@ class ListItemAdapter(
     private val context: Context,
     private val items: List<Item>
 ) : ArrayAdapter<Item>(context, R.layout.item_layout, items) {
+
+    companion object {
+        const val TAG = "MainActivity"
+    }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val itemView =

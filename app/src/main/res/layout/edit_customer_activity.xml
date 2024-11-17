@@ -17,91 +17,61 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp" />
+
+            <Spinner
+                android:id="@+id/customerNameSpinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3" />
+
             <EditText
                 android:id="@+id/nameEditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.7"
                 android:gravity="center" />
         </TableRow>
 
         <TableRow>
             <TextView
-                android:text="Buying Price"
+                android:text="Mobile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"/>
             <EditText
-                android:id="@+id/buyEditText"
+                android:id="@+id/mobileEditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:inputType="numberSigned"
                 android:gravity="center" />
-            <TextView
-                android:text="Rs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp" />
         </TableRow>
 
         <TableRow>
             <TextView
-                android:text="Selling Price"
+                android:text="Email"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"/>
             <EditText
-                android:id="@+id/sellEditText"
+                android:id="@+id/emailEditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="numberSigned"
                 android:gravity="center" />
-            <TextView
-                android:text="Rs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp" />
         </TableRow>
 
         <TableRow>
             <TextView
-                android:text="Total"
+                android:text="Address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <EditText
-                android:id="@+id/totalEditText"
+                android:id="@+id/addressEditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.6"
-                android:inputType="numberSigned"
+                android:layout_weight="1"
                 android:gravity="center" />
-            <Spinner
-                android:id="@+id/itemTotalSpinner"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.4"
-                android:ems="6" />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:text="Remaining"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="12dp" />
-            <EditText
-                android:id="@+id/remainingEditText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.6"
-                android:inputType="numberSigned"
-                android:gravity="center" />
-            <Spinner
-                android:id="@+id/itemRemSpinner"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.4" />
         </TableRow>
 
     </TableLayout>
@@ -112,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Save Item"
+        android:text="Save"
         android:layout_gravity="center_horizontal"  />
 
 </LinearLayout>

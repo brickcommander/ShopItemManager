@@ -6,7 +6,7 @@
     <!-- List of Items -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
-        android:name="com.brickcommander.napp.ListFragment"
+        android:name="com.brickcommander.napp.activity.list.ListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_bar" />

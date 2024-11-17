@@ -3,7 +3,9 @@ package com.brickcommander.napp.logic
 import com.brickcommander.napp.db.GitHubJsonHandler
 import android.util.Log
 import com.brickcommander.napp.data.Data
+import com.brickcommander.napp.model.Customer
 import com.brickcommander.napp.model.Item
+import com.brickcommander.napp.model.Profile
 
 class Calculate() {
 
@@ -40,6 +42,32 @@ class Calculate() {
             handler.updateItemList(newList)
         }.start()
 
+        return true
+    }
+
+    fun updateCustomer(newCustomer: Customer, customeIdx: Int): Boolean {
+        Log.d(TAG, "updateCustomer: $newCustomer : $customeIdx")
+//        if(newItem.getName().isEmpty()) return false
+//        if (itemPosition == -1) {
+//            for (item in Data.itemList) {
+//                if(item.getName().equals(newItem.getName(), ignoreCase = true)) return false
+//            }
+//            Data.itemList.add(newItem)
+//        } else {
+//            Data.itemList[itemPosition] = newItem
+//        }
+//
+//        Thread {
+//            val newList = Data.itemList.toMutableList()
+//            sortList(newList)
+//            handler.updateItemList(newList)
+//        }.start()
+
+        return true
+    }
+
+    fun updateProfile(newProfile: Profile): Boolean {
+        Log.d(TAG, "updateProfile: $newProfile")
         return true
     }
 

@@ -1,15 +1,21 @@
 package com.brickcommander.napp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ListView
 import android.widget.Toast
+import com.brickcommander.napp.activity.edit.EditItemActivity
+import com.brickcommander.napp.activity.list.ListFragment
 import com.brickcommander.napp.model.Enums
 import com.brickcommander.napp.model.Item
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        const val TAG = "MainActivity"
+    }
+
     private var items = mutableListOf<Item>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +35,9 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.fragment_container, fragment)
                 .commit()
         }
+
+        val intent = Intent(this, EditItemActivity::class.java)
+        startActivity(intent)
 
     }
 

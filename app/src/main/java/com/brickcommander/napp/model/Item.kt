@@ -4,7 +4,7 @@ import java.time.LocalDate
 
 class Item() {
 
-    private val id: String = java.util.UUID.randomUUID().toString()
+    private val id: String = "I" + java.util.UUID.randomUUID().toString()
     private var name: String = ""
     private var buyingPrice: Int = 0
     private var sellingPrice: Int = 0
@@ -64,6 +64,6 @@ class Item() {
     }
 
     override fun toString(): String {
-        return "Item(id='$id', name='$name', buyingPrice=$buyingPrice, sellingPrice=$sellingPrice, totalCount=$totalCount, remainingCount=$remainingCount), totalQ=$totalQ, remainingQ=$remainingQ"
+        return "Item(id=$id, name=$name, buyingPrice=$buyingPrice, sellingPrice=$sellingPrice, totalCount=$totalCount, remainingCount=$remainingCount, totalQ=$totalQ, remainingQ=$remainingQ)"
     }
 }

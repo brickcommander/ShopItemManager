@@ -1,4 +1,4 @@
-package com.brickcommander.napp
+package com.brickcommander.napp.activity.edit
 
 import android.app.Activity
 import android.content.Intent
@@ -12,13 +12,18 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.brickcommander.napp.R
 import com.brickcommander.napp.data.CONSTANTS
 import com.brickcommander.napp.data.Data
 import com.brickcommander.napp.logic.Calculate
 import com.brickcommander.napp.model.Item
 import com.brickcommander.napp.utils.Utility
 
-class EditItemActivity : AppCompatActivity() {
+class EditPurchaseActivity : AppCompatActivity() {
+    companion object {
+        const val TAG = "EditPurchaseActivity"
+    }
+
     private lateinit var nameEditText: EditText
     private lateinit var buyEditText: EditText
     private lateinit var sellEditText: EditText
@@ -34,7 +39,7 @@ class EditItemActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_item_activity)
 
-        Log.d("EditItemActivity", "onCreate called")
+        Log.d(TAG, "onCreate called")
 
         nameEditText = findViewById(R.id.nameEditText)
         buyEditText = findViewById(R.id.buyEditText)
@@ -76,25 +81,12 @@ class EditItemActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 // Handle item selection here
                 val selectedItem = parent.getItemAtPosition(position).toString()
-                Log.d("EditItemActivity", "itemTotalSpinner Selected item: $selectedItem")
+                Log.d(TAG, "itemTotalSpinner Selected item: $selectedItem")
                 item?.setTotalQ(position)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-                Log.d("EditItemActivity", "itemTotalSpinner None Selected")
-            }
-        }
-
-        itemRemSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                // Handle item selection here
-                val selectedItem = parent.getItemAtPosition(position).toString()
-                Log.d("EditItemActivity", "itemRemSpinner Selected item: $selectedItem")
-                item?.setRemainingQ(position)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                Log.d("EditItemActivity", "itemRemSpinner None Selected")
+                Log.d(TAG, "itemTotalSpinner None Selected")
             }
         }
 
